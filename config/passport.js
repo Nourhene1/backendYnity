@@ -6,6 +6,7 @@ require("dotenv").config();
 
 // ✅ Modèle utilisateur (tu peux l'ajuster)
 const User = require("../models/User");
+console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
 
 passport.serializeUser((user, done) => {
   done(null, user.id); // id MongoDB
@@ -22,7 +23,6 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:5000/auth/google/callback"
   },
-console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
 
   async (accessToken, refreshToken, profile, done) => {
     try {
